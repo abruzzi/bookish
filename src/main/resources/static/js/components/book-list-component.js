@@ -3,9 +3,24 @@ bookishApp.component('bookList', {
   controller: ['$routeParams', 'bookService',
     function BookListController($routeParams, bookService) {
       var self = this;
-      bookService.fetchAll().then(function(books) {
+      var page =  $routeParams.page;
+
+      bookService.fetchAll(page).then(function(books) {
         self.books = books.content;
+        self.pages = range(0, books.totalPages);
+        self.first = books.first;
+        self.last = books.last;
       });
+
+      function range(start, end) {
+        var result = [];
+
+        for(var i = start; i < end; i++) {
+          result.push(i);
+        }
+
+        return result;
+      }
     }
   ]
 });

@@ -23,3 +23,7 @@
 .book-details img {
     width: 90%;
 }
+
+.bottom-pagination {
+    margin: 0 auto;
+}

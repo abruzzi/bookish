@@ -7,4 +7,20 @@
             <div class="book-published-at">{{book.publishedAt | date : 'yyyy-MM-dd'}}</div>
         </li>
     </ul>
+
+    <nav class="container bottom-pagination">
+        <ul class="pagination">
+            <li>
+                <a ng-href="/#!/books?page=1" aria-label="Previous" ng-disabled="$ctrl.first">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li ng-repeat="num in $ctrl.pages"><a ng-href="{{'/#!/books?page=' + num}}">{{num}}</a></li>
+            <li>
+                <a ng-href="{{'/#!/books?page=' + $ctrl.number}}" aria-label="Next" ng-disabled="$ctrl.last">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
