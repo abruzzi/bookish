@@ -21,4 +21,14 @@ public class BookController {
     public Book create(@RequestBody Book book) {
         return bookRepository.save(book);
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Book> list() {
+        return bookRepository.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public Book findOne(@PathVariable Long id) {
+        return bookRepository.findOne(id);
+    }
 }

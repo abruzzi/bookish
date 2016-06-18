@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,6 +55,29 @@ public class BookControllerTest {
                 body("id", notNullValue()).
                 body("title", is("Refactoring")).
                 body("author", is("Martin Fowler"));
+    }
+
+    @Test
+    public void should_return_list_of_books() {
+        bookRepository.save(prepareBook());
+        given().
+        when().
+                get("/books").
+        then().
+                statusCode(200).
+                body("title", hasItems("Refactoring"));
+    }
+
+    @Test
+    public void should_return_a_book() {
+        Book save = bookRepository.save(prepareBook());
+
+        given().
+        when().
+                get("/books/"+save.getId()).
+        then().
+                statusCode(200).
+                body("title", is("Refactoring"));
     }
 
     private Book prepareBook() {
