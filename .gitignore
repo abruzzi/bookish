@@ -1,0 +1,8 @@
+*.class
+.gradle
+build
+out
+bookish.iml
+bookish.ipr
+bookish.iws
+**/node_modules
