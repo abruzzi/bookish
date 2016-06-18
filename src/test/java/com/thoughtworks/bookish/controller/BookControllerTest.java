@@ -54,7 +54,9 @@ public class BookControllerTest {
                 statusCode(201).
                 body("id", notNullValue()).
                 body("title", is("代码整洁之道")).
-                body("author", is("Robert C. Martin, 韩磊")).body("asin", is("B0031M9GHC"));
+                body("author", is("Robert C. Martin, 韩磊")).
+                body("asin", is("B0031M9GHC")).
+                body("description", is("代码整洁之道"));
     }
 
     @Test
@@ -81,7 +83,9 @@ public class BookControllerTest {
     }
 
     private Book prepareBook() {
-        return new Book("代码整洁之道", "Robert C. Martin, 韩磊", "9787115216878", "B0031M9GHC");
+        Book book = new Book("代码整洁之道", "Robert C. Martin, 韩磊", "9787115216878", "B0031M9GHC");
+        book.setDescription("代码整洁之道");
+        return book;
     }
 
 }

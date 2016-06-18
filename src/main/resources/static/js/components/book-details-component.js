@@ -1,8 +1,12 @@
 bookishApp.component('bookDetails', {
-  template: 'TBD',
-  controller: ['$routeParams',
-    function BookListController($routeParams) {
-      this.bookId = $routeParams.bookId;
+  templateUrl: 'js/templates/book-details-template.html',
+  controller: ['$routeParams', 'bookService',
+    function BookListController($routeParams, bookService) {
+      var self = this;
+      bookService.fetchOne($routeParams.bookId).then(function(book) {
+        self.book = book;
+        self.book.imageLink = '/images/actuals/' + self.book.asin + '.jpg';
+      });
     }
   ]
 });

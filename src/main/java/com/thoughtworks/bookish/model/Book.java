@@ -17,6 +17,7 @@ public class Book {
 
     @Column(name = "published_at")
     private Date publishedAt;
+    private String description;
 
 
     public String getAuthor() {
@@ -74,5 +75,13 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
