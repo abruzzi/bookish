@@ -1,0 +1,8 @@
+<div class="book-list">
+    <ul class="row">
+        <li ng-repeat="book in $ctrl.books" class="book-item col-lg-3 col-md-4 col-sm-2">
+            <img ng-src="{{'/images/thumbnails/' + book.asin + '.jpg'}}" alt="{{book.title}}">
+            <span class="book-title">{{book.title}}</span>
+        </li>
+    </ul>
+</div>

@@ -53,8 +53,8 @@ public class BookControllerTest {
         then().
                 statusCode(201).
                 body("id", notNullValue()).
-                body("title", is("Refactoring")).
-                body("author", is("Martin Fowler"));
+                body("title", is("代码整洁之道")).
+                body("author", is("Robert C. Martin, 韩磊")).body("asin", is("B0031M9GHC"));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class BookControllerTest {
                 get("/books").
         then().
                 statusCode(200).
-                body("title", hasItems("Refactoring"));
+                body("title", hasItems("代码整洁之道"));
     }
 
     @Test
@@ -77,11 +77,11 @@ public class BookControllerTest {
                 get("/books/"+save.getId()).
         then().
                 statusCode(200).
-                body("title", is("Refactoring"));
+                body("title", is("代码整洁之道"));
     }
 
     private Book prepareBook() {
-        return new Book("Refactoring", "Martin Fowler");
+        return new Book("代码整洁之道", "Robert C. Martin, 韩磊", "9787115216878", "B0031M9GHC");
     }
 
 }

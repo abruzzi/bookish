@@ -11,13 +11,23 @@ public class Book {
     private Long id;
     private String title;
     private String author;
+    private String asin;
+
+    private String isbn;
 
     @Column(name = "published_at")
     private Date publishedAt;
-    private String isbn;
+
 
     public String getAuthor() {
         return author;
+    }
+    public String getAsin() {
+        return asin;
+    }
+
+    public void setAsin(String asin) {
+        this.asin = asin;
     }
 
     public void setAuthor(String author) {
@@ -43,9 +53,11 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String author) {
+    public Book(String title, String author, String isbn, String asin) {
         this.title = title;
         this.author = author;
+        this.isbn = isbn;
+        this.asin = asin;
     }
 
     public Long getId() {

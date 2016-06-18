@@ -2,6 +2,7 @@ require 'json'
 
 books = JSON.parse(File.open("scripts/books.json").read)
 
+puts "truncate books;"
 books.each do |book|
-    puts "insert into bookish.books(title, author, published_at, isbn) values('#{book["title"]}', '#{book["author"].join(',')}', '#{book["published_at"]}', '#{book["isbn"].last}');"
+    puts "insert into bookish.books(title, author, published_at, isbn, asin) values('#{book["title"]}', '#{book["author"].join(',')}', '#{book["published_at"]}', '#{book["isbn"].last}', '#{book["asin"]}');"
 end

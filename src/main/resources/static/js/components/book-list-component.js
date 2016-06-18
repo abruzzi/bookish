@@ -1,7 +1,11 @@
 bookishApp.component('bookList', {
-  template: 'TBD',
-  controller: ['$routeParams',
-    function BookListController($routeParams) {
+  templateUrl: 'js/templates/book-list-template.html',
+  controller: ['$routeParams', 'bookService',
+    function BookListController($routeParams, bookService) {
+      var self = this;
+      bookService.fetchAll().then(function(books) {
+        self.books = books;
+      });
     }
   ]
 });

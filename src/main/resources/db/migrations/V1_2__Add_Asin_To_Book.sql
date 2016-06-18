@@ -1,0 +1,1 @@
+alter table books add column asin varchar(64);

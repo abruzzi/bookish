@@ -1,0 +1,18 @@
+.book-list {
+    padding: 0 30px;
+    margin: 60px;
+}
+.book-list .book-item {
+    list-style: none;
+    margin: 30px 0;
+    padding: 0 15px;
+    text-align: center;
+}
+.book-list .book-item img {
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+}
+.book-list .book-item .book-item {
+    text-align: left;
+}
