@@ -3,6 +3,7 @@ package com.thoughtworks.bookish.controller;
 import com.thoughtworks.bookish.model.Book;
 import com.thoughtworks.bookish.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,10 @@ public class BookController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Iterable<Book> list() {
-        return bookRepository.findAll();
+    public Iterable<Book> list(@RequestParam(value = "page", defaultValue = "0") int page,
+                               @RequestParam(value = "size", defaultValue = "12") int size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return bookRepository.findAll(pageRequest);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

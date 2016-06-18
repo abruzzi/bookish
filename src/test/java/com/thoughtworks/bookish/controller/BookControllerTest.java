@@ -16,8 +16,12 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+
 import static com.jayway.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.hamcrest.core.IsNull.notNullValue;
 
@@ -61,22 +65,47 @@ public class BookControllerTest {
 
     @Test
     public void should_return_list_of_books() {
-        bookRepository.save(prepareBook());
+        Iterable<Book> saved = bookRepository.save(prepareBooks());
+
+        System.err.println(saved);
         given().
         when().
                 get("/books").
         then().
                 statusCode(200).
-                body("title", hasItems("代码整洁之道"));
+                body("content.title", hasItems("代码整洁之道", "重构:改善既有代码的设计", "敏捷软件开发(原则模式与实践)"));
+    }
+
+    @Test
+    public void should_return_list_of_books_with_pagination() {
+        Iterable<Book> saved = bookRepository.save(prepareBooks());
+
+        given().
+        when().
+                get("/books?page=0&size=2").
+        then().
+                statusCode(200).
+                body("content.title", hasItems("代码整洁之道", "重构:改善既有代码的设计")).
+                body("content.title", not(hasItem("敏捷软件开发(原则模式与实践)")));
+    }
+
+    private Iterable<Book> prepareBooks() {
+        ArrayList<Book> books = new ArrayList<>();
+
+        books.add(new Book("代码整洁之道", "Robert C. Martin, 韩磊", "9787115216878", "B0031M9GHC"));
+        books.add(new Book("重构:改善既有代码的设计", "Martin Fowler, 熊节", "9787115369093", "B011LPUB42"));
+        books.add(new Book("敏捷软件开发(原则模式与实践)", "Robert C. Martin, 邓辉", "9787302071976", "B00116MMA8"));
+
+        return books;
     }
 
     @Test
     public void should_return_a_book() {
-        Book save = bookRepository.save(prepareBook());
+        Book saved = bookRepository.save(prepareBook());
 
         given().
         when().
-                get("/books/"+save.getId()).
+                get("/books/"+saved.getId()).
         then().
                 statusCode(200).
                 body("title", is("代码整洁之道"));

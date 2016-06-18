@@ -4,7 +4,7 @@ bookishApp.component('bookList', {
     function BookListController($routeParams, bookService) {
       var self = this;
       bookService.fetchAll().then(function(books) {
-        self.books = books;
+        self.books = books.content;
       });
     }
   ]
