@@ -8,7 +8,9 @@
     margin: 30px 0;
     padding: 0 30px;
     text-align: left;
+    height: 240px;
 }
+
 .book-list .book-item img {
     height: 150px;
     display: block;
@@ -25,5 +27,6 @@
 }
 
 .bottom-pagination {
-    margin: 0 auto;
+    text-align: center;
+    padding: 36px 0;
 }

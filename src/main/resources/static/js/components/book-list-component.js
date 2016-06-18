@@ -8,6 +8,8 @@ bookishApp.component('bookList', {
       bookService.fetchAll(page).then(function(books) {
         self.books = books.content;
         self.pages = range(0, books.totalPages);
+        self.current = books.number;
+        self.total = books.totalPages-1;
         self.first = books.first;
         self.last = books.last;
       });

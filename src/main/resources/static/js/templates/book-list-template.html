@@ -8,19 +8,22 @@
         </li>
     </ul>
 
-    <nav class="container bottom-pagination">
-        <ul class="pagination">
-            <li>
-                <a ng-href="/#!/books?page=1" aria-label="Previous" ng-disabled="$ctrl.first">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li ng-repeat="num in $ctrl.pages"><a ng-href="{{'/#!/books?page=' + num}}">{{num}}</a></li>
-            <li>
-                <a ng-href="{{'/#!/books?page=' + $ctrl.number}}" aria-label="Next" ng-disabled="$ctrl.last">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="row">
+        <nav class="bottom-pagination">
+            <ul class="pagination">
+                <li ng-class="{'disabled': $ctrl.first}">
+                    <a ng-href="/#!/books?page=0" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li ng-repeat="num in $ctrl.pages" ng-class="{'active': $ctrl.current == num}"><a ng-href="{{'/#!/books?page=' + num}}" >{{num}}</a></li>
+                <li ng-class="{'disabled': $ctrl.last}">
+                    <a ng-href="{{'/#!/books?page=' + $ctrl.total}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
 </div>
