@@ -1,10 +1,16 @@
 <div class="book-list">
     <ul class="row">
         <li ng-repeat="book in $ctrl.books" class="book-item col-lg-3 col-md-4 col-sm-2">
-            <img ng-src="{{'/images/thumbnails/' + book.asin + '.jpg'}}" alt="{{book.title}}">
-            <a ng-href="{{'/#!/books/' + book.id}}" class="book-title">{{book.title}}</a>
-            <div class="book-author">{{book.author}}</div>
-            <div class="book-published-at">{{book.publishedAt | date : 'yyyy-MM-dd'}}</div>
+
+            <div class="thumbnail">
+                <img ng-src="{{'/images/thumbnails/' + book.asin + '.jpg'}}" alt="{{book.title}}">
+                <div class="caption">
+                    <a ng-href="{{'/#!/books/' + book.id}}" class="book-title"><h4>{{book.title}}</h4></a>
+                    <p class="book-author"><strong>作者:</strong><span>{{book.author}}</span></p>
+                    <p class="book-published-at"><strong>出版日期:</strong><span>{{book.publishedAt | date : 'yyyy-MM-dd'}}</span></p>
+                </div>
+            </div>
+
         </li>
     </ul>
 

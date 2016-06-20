@@ -1,20 +1,55 @@
+body {
+    background: repeating-linear-gradient(-45deg, #e3e3e3, #e3e3e3 2px, #eeeeee 2px, #eeeeee 4px);
+}
+
 .book-list {
     padding: 0 30px;
-    margin-top: 60px;
+    margin-top: 80px;
 }
 
 .book-list .book-item {
     list-style: none;
-    margin: 30px 0;
-    padding: 0 30px;
     text-align: left;
-    height: 240px;
 }
 
 .book-list .book-item img {
-    height: 150px;
+    height: 220px;
     display: block;
-    margin: 10px auto;
+    margin: 20px auto;
+}
+
+.caption h4 {
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.caption p strong {
+    color: #666666;
+}
+
+.caption p {
+    margin: 0;
+    color: #999999;
+}
+
+.caption span {
+    padding: 0 10px;
+}
+
+.book-author {
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.book-published-at {
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .book-details {
@@ -28,5 +63,5 @@
 
 .bottom-pagination {
     text-align: center;
-    padding: 36px 0;
+    padding: 24px 0;
 }
