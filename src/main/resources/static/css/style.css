@@ -5,6 +5,7 @@ body, input, textarea, select, button {
 
 body {
     background: repeating-linear-gradient(-45deg, #e3e3e3, #e3e3e3 2px, #eeeeee 2px, #eeeeee 4px);
+    font-family: "Pingfang SC", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
 }
 
 .book-list {
