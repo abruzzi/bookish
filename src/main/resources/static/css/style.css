@@ -6,6 +6,7 @@ body, input, textarea, select, button {
 body {
     background: repeating-linear-gradient(-45deg, #e3e3e3, #e3e3e3 2px, #eeeeee 2px, #eeeeee 4px);
     font-family: "Pingfang SC", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", sans;
+    -webkit-font-smoothing: antialiased;
 }
 
 .book-list {
@@ -22,6 +23,10 @@ body {
     height: 220px;
     display: block;
     margin: 20px auto;
+}
+
+.caption {
+    border-top: 1px dashed #eeeeee;
 }
 
 .caption h4 {
