@@ -79,9 +79,9 @@ body {
 
 .form-signin {
     width: 400px;
-    margin: 40px auto;
+    margin: 80px auto;
     background-color: #ffffff;
-    padding: 20px 40px;
+    padding: 20px 40px 40px 40px;
     box-shadow: #666666 1px 1px 10px;
 }
 
@@ -101,6 +101,6 @@ input[type=password] {
 }
 
 button[type="submit"] {
-    margin: 24px 0;
+    margin: 24px 0 10px 0;
     box-shadow: none;
 }

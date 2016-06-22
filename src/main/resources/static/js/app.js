@@ -10,6 +10,9 @@ var bookishApp = angular
           .when('/books/:bookId', {
             template: '<book-details></book-details>'
           })
+          .when('/signup', {
+              template: '<sign-up></sign-up>'
+          })
           .otherwise('/books');
     }
     ]);

@@ -53,6 +53,9 @@ public class User {
 
     @PrePersist
     private void onCreate() {
+        if(name == null) {
+            name = email;
+        }
         createdAt = new Date();
     }
 
