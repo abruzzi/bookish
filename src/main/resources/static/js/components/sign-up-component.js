@@ -1,7 +1,7 @@
 bookishApp.component('signUp', {
   templateUrl: 'js/templates/sign-up-template.html',
-  controller: ['$routeParams', 'userService',
-    function SignUpController($routeParams, userService) {
+  controller: ['$routeParams', '$location', 'userService',
+    function SignUpController($routeParams, $location, userService) {
       this.user = {
         email: '',
         password: ''
@@ -9,7 +9,7 @@ bookishApp.component('signUp', {
 
       this.signUp = function () {
         userService.create(this.user).then(function() {
-          console.log('sign up success');
+          $location.path('/books');
         });
       };
 
