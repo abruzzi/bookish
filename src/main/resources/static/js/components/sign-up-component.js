@@ -9,7 +9,7 @@ bookishApp.component('signUp', {
 
       this.signUp = function () {
         userService.create(this.user).then(function() {
-          $location.path('/books');
+          $location.path('/signin');
         });
       };
 

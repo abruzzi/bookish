@@ -13,6 +13,9 @@ var bookishApp = angular
           .when('/signup', {
               template: '<sign-up></sign-up>'
           })
+          .when('/signin', {
+              template: '<sign-in></sign-in>'
+          })
           .otherwise('/books');
     }
     ]);
