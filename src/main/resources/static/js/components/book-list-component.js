@@ -1,7 +1,7 @@
 bookishApp.component('bookList', {
   templateUrl: 'js/templates/book-list-template.html',
-  controller: ['$routeParams', 'bookService',
-    function BookListController($routeParams, bookService) {
+  controller: ['$routeParams', 'bookService', 'localStorageService', 'favoriteService',
+    function BookListController($routeParams, bookService, localStorageService, favoriteService) {
       var self = this;
       var page =  $routeParams.page;
 
@@ -22,6 +22,13 @@ bookishApp.component('bookList', {
         }
 
         return result;
+      }
+
+      self.addToFavorites = function (id) {
+        var session = localStorageService.get("session");
+        favoriteService.save(session.current.email, id).then(function() {
+
+        });
       }
     }
   ]

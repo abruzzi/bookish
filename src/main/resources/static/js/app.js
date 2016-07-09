@@ -21,7 +21,7 @@ var bookishApp = angular
               template: '<sign-in></sign-in>'
           }).
           when('/favorites', {
-            template: '<favorites></favorites>'
+            template: '<favorite></favorite>'
           })
           .otherwise('/books');
     }

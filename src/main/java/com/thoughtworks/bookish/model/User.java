@@ -1,7 +1,11 @@
 package com.thoughtworks.bookish.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -12,6 +16,11 @@ public class User {
     private String name;
     private String email;
     private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "favorites", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
+    @JsonBackReference
+    private Set<Book> books = new HashSet<>();
 
     public String getEmail() {
         return email;
@@ -62,6 +71,14 @@ public class User {
     @PreUpdate
     private void onUpdate() {
         updatedAt = new Date();
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 
     public Long getId() {

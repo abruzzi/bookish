@@ -1,7 +1,12 @@
 package com.thoughtworks.bookish.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -19,6 +24,18 @@ public class Book {
     private Date publishedAt;
     private String description;
 
+    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @JsonIgnore
+    private Set<User> users = new HashSet<>();
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 
     public String getAuthor() {
         return author;
