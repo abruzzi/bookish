@@ -1,7 +1,11 @@
 var bookishApp = angular
-    .module('bookishApp', ['ngRoute'])
-    .config(['$locationProvider', '$routeProvider', function config($locationProvider, $routeProvider) {
-      $locationProvider.hashPrefix('!');
+    .module('bookishApp', ['ngRoute', 'LocalStorageModule'])
+    .config(['$locationProvider', '$routeProvider', 'localStorageServiceProvider', function config($locationProvider, $routeProvider, localStorageServiceProvider) {
+        localStorageServiceProvider
+            .setPrefix('bookish')
+            .setNotify(true, true);
+
+        $locationProvider.hashPrefix('!');
 
       $routeProvider
           .when('/books', {

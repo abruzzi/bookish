@@ -1,7 +1,7 @@
 bookishApp.component('signIn', {
   templateUrl: 'js/templates/sign-in-template.html',
-  controller: ['$routeParams', '$rootScope', '$location', 'userService',
-    function SignInController($routeParams, $rootScope, $location, userService) {
+  controller: ['$routeParams', '$rootScope', '$location', 'userService', 'localStorageService',
+    function SignInController($routeParams, $rootScope, $location, userService, localStorageService) {
       this.user = {
         email: '',
         password: ''
@@ -9,8 +9,11 @@ bookishApp.component('signIn', {
 
       this.signIn = function () {
         userService.login(this.user).then(function(user) {
-          $rootScope.authenticated = true;
-          $rootScope.current = user;
+          localStorageService.set('session', {
+            authenticated: true,
+            current: user
+          });
+
           $location.path('/books');
         });
       };
