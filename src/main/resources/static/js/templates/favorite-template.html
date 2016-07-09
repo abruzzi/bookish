@@ -1,0 +1,35 @@
+<div class="book-list">
+    <ul class="row">
+        <li ng-repeat="book in $ctrl.books" class="book-item col-lg-3 col-md-4 col-sm-2">
+
+            <div class="thumbnail">
+                <img ng-src="{{'/images/thumbnails/' + book.asin + '.jpg'}}" alt="{{book.title}}">
+                <div class="caption">
+                    <a ng-href="{{'/#!/books/' + book.id}}" class="book-title"><h4>{{book.title}}</h4></a>
+                    <p class="book-author"><strong>作者:</strong><span>{{book.author}}</span></p>
+                    <p class="book-published-at"><strong>出版日期:</strong><span>{{book.publishedAt | date : 'yyyy-MM-dd'}}</span></p>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+
+    <div class="row">
+        <nav class="bottom-pagination">
+            <ul class="pagination">
+                <li ng-class="{'disabled': $ctrl.first}">
+                    <a ng-href="/#!/books?page=0" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li ng-repeat="num in $ctrl.pages" ng-class="{'active': $ctrl.current == num}"><a ng-href="{{'/#!/books?page=' + num}}" >{{num}}</a></li>
+                <li ng-class="{'disabled': $ctrl.last}">
+                    <a ng-href="{{'/#!/books?page=' + $ctrl.total}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>

@@ -19,6 +19,9 @@ var bookishApp = angular
           })
           .when('/signin', {
               template: '<sign-in></sign-in>'
+          }).
+          when('/favorites', {
+            template: '<favorites></favorites>'
           })
           .otherwise('/books');
     }
