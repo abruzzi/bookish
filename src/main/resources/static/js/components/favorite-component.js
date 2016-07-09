@@ -9,6 +9,14 @@ bookishApp.component('favorite', {
             favoriteService.fetchAll(session.current.email).then(function(favorites) {
                 self.books = favorites;
             });
+
+            self.deleteFromFavorites = function(id) {
+                favoriteService.delete(session.current.email, id).then(function() {
+                    favoriteService.fetchAll(session.current.email).then(function(favorites) {
+                        self.books = favorites;
+                    });
+                });
+            };
         }
     ]
 });

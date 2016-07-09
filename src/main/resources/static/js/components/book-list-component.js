@@ -4,6 +4,9 @@ bookishApp.component('bookList', {
     function BookListController($routeParams, bookService, localStorageService, favoriteService) {
       var self = this;
       var page =  $routeParams.page;
+      var session = localStorageService.get('session');
+
+      self.favorites = [];
 
       bookService.fetchAll(page).then(function(books) {
         self.books = books.content;
@@ -25,14 +28,17 @@ bookishApp.component('bookList', {
       }
 
       self.addToFavorites = function (id) {
-        var session = localStorageService.get("session");
         favoriteService.save(session.current.email, id).then(function() {
 
         });
       };
 
-      self.deleteFromFavorites = function(id) {
-          console.log(id);
+      favoriteService.fetchAll(session.current.email).then(function(favorites) {
+        self.favorites = favorites;
+      });
+
+      self.enableAddToFavoritesLink = function(id) {
+        return !_.includes(_.map(self.favorites, "id"), id);
       };
     }
   ]

@@ -8,7 +8,7 @@
                     <a ng-href="{{'/#!/books/' + book.id}}" class="book-title"><h4>{{book.title}}</h4></a>
                     <p class="book-author"><strong>作者:</strong><span>{{book.author}}</span></p>
                     <p class="book-published-at"><strong>出版日期:</strong><span>{{book.publishedAt | date : 'yyyy-MM-dd'}}</span></p>
-                    <a href ng-click="$ctrl.addToFavorites(book.id)"><h5>添加到书单</h5></a>
+                    <a href ng-click="$ctrl.addToFavorites(book.id)" class="{{$ctrl.enableAddToFavoritesLink(book.id) ? 'enabled' : 'disabled'}}"><h5>添加到书单</h5></a>
                 </div>
             </div>
         </li>

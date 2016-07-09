@@ -23,6 +23,19 @@ bookishApp.factory('favoriteService', ['$http', '$q', function($http, $q) {
             });
 
             return defered.promise;
+        },
+
+        delete: function(current, bookId) {
+            var url = '/favorites?email=' + current + '&bookId=' + bookId;
+            var defered = $q.defer();
+
+            $http.delete(url).success(function (data) {
+                defered.resolve(data);
+            }).error(function (data) {
+                defered.reject(data);
+            });
+
+            return defered.promise;
         }
     }
 }]);

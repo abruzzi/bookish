@@ -104,3 +104,12 @@ button[type="submit"] {
     margin: 24px 0 10px 0;
     box-shadow: none;
 }
+
+a.disabled {
+    color: #cccccc;
+    text-decoration: none;
+}
+
+a.disabled:hover {
+    text-decoration: none;
+}

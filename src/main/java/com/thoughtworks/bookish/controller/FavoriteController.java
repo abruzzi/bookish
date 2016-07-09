@@ -35,6 +35,19 @@ public class FavoriteController {
         return one;
     }
 
+    @RequestMapping(method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book delete(@RequestParam("email") String email, @RequestParam("bookId") Long bookId) {
+        User user = userRepository.findByEmail(email);
+        Book one = bookRepository.findOne(bookId);
+
+        Set<Book> books = user.getBooks();
+        books.remove(one);
+        userRepository.save(user);
+
+        return one;
+    }
+
     @RequestMapping
     public Iterable<Book> fetchAll(@RequestParam("email") String email) {
         return bookRepository.findByUserEmail(email);
