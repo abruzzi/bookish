@@ -27,15 +27,21 @@ bookishApp.component('bookList', {
         return result;
       }
 
+      function refreshFavorites() {
+        favoriteService.fetchAll(session.current.email).then(function (favorites) {
+          self.favorites = favorites;
+        });
+      }
+
       self.addToFavorites = function (id) {
         favoriteService.save(session.current.email, id).then(function() {
-
+          toastr.options.positionClass = 'toast-top-right';
+          toastr.success("Book has been added to favorites");
+          refreshFavorites();
         });
       };
 
-      favoriteService.fetchAll(session.current.email).then(function(favorites) {
-        self.favorites = favorites;
-      });
+      refreshFavorites();
 
       self.enableAddToFavoritesLink = function(id) {
         return !_.includes(_.map(self.favorites, "id"), id);

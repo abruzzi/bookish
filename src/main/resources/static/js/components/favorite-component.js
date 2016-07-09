@@ -6,15 +6,21 @@ bookishApp.component('favorite', {
             var session = localStorageService.get('session');
 
             var self = this;
-            favoriteService.fetchAll(session.current.email).then(function(favorites) {
-                self.books = favorites;
-            });
+
+            function refreshFavorites() {
+                favoriteService.fetchAll(session.current.email).then(function (favorites) {
+                    self.books = favorites;
+                });
+            }
+
+            refreshFavorites();
 
             self.deleteFromFavorites = function(id) {
                 favoriteService.delete(session.current.email, id).then(function() {
-                    favoriteService.fetchAll(session.current.email).then(function(favorites) {
-                        self.books = favorites;
-                    });
+                    toastr.options.positionClass = 'toast-top-right';
+                    toastr.success("Book has been deleted from favorites");
+
+                    refreshFavorites();
                 });
             };
         }
