@@ -34,8 +34,8 @@
 
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">主页</a></li>
-          <li ng-show="authenticated"><a href="/#!/favorites">我的书单</a></li>
+          <li ng-class="{active: isActive('/books')}"><a href="/#!/">主页</a></li>
+          <li ng-class="{active: isActive('/favorites')}" ng-show="authenticated"><a href="/#!/favorites">我的书单</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

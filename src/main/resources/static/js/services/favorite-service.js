@@ -13,9 +13,10 @@ bookishApp.factory('favoriteService', ['$http', '$q', function($http, $q) {
         },
 
         save: function(current, bookId) {
+            var url = '/favorites?email=' + current + '&bookId=' + bookId;
             var defered = $q.defer();
 
-            $http.post('/favorites?email='+current+'&bookId='+ bookId).success(function (data) {
+            $http.post(url).success(function (data) {
                 defered.resolve(data);
             }).error(function (data) {
                 defered.reject(data);

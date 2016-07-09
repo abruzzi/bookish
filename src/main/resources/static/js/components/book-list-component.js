@@ -29,7 +29,11 @@ bookishApp.component('bookList', {
         favoriteService.save(session.current.email, id).then(function() {
 
         });
-      }
+      };
+
+      self.deleteFromFavorites = function(id) {
+          console.log(id);
+      };
     }
   ]
 });

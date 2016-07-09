@@ -27,5 +27,10 @@ bookishApp.controller('userManagerController', ['$rootScope', '$location', 'user
                 localStorageService.remove("session");
                 $location.path('/signin');
             });
-        }
+        };
+
+        $rootScope.isActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
+
 }]);
