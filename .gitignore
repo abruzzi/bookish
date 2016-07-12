@@ -6,3 +6,4 @@ bookish.iml
 bookish.ipr
 bookish.iws
 **/node_modules
+src/generated/

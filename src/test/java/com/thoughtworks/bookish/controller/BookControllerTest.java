@@ -67,7 +67,6 @@ public class BookControllerTest {
     public void should_return_list_of_books() {
         Iterable<Book> saved = bookRepository.save(prepareBooks());
 
-        System.err.println(saved);
         given().
         when().
                 get("/books").
@@ -89,16 +88,6 @@ public class BookControllerTest {
                 body("content.title", not(hasItem("敏捷软件开发(原则模式与实践)")));
     }
 
-    private Iterable<Book> prepareBooks() {
-        ArrayList<Book> books = new ArrayList<>();
-
-        books.add(new Book("代码整洁之道", "Robert C. Martin, 韩磊", "9787115216878", "B0031M9GHC"));
-        books.add(new Book("重构:改善既有代码的设计", "Martin Fowler, 熊节", "9787115369093", "B011LPUB42"));
-        books.add(new Book("敏捷软件开发(原则模式与实践)", "Robert C. Martin, 邓辉", "9787302071976", "B00116MMA8"));
-
-        return books;
-    }
-
     @Test
     public void should_return_a_book() {
         Book saved = bookRepository.save(prepareBook());
@@ -109,6 +98,16 @@ public class BookControllerTest {
         then().
                 statusCode(200).
                 body("title", is("代码整洁之道"));
+    }
+
+    private Iterable<Book> prepareBooks() {
+        ArrayList<Book> books = new ArrayList<>();
+
+        books.add(new Book("代码整洁之道", "Robert C. Martin, 韩磊", "9787115216878", "B0031M9GHC"));
+        books.add(new Book("重构:改善既有代码的设计", "Martin Fowler, 熊节", "9787115369093", "B011LPUB42"));
+        books.add(new Book("敏捷软件开发(原则模式与实践)", "Robert C. Martin, 邓辉", "9787302071976", "B00116MMA8"));
+
+        return books;
     }
 
     private Book prepareBook() {

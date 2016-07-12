@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import static com.thoughtworks.bookish.specification.BookSpecs.isAuthorizedBy;
+
 @RestController
 @RequestMapping(value = "/books")
 public class BookController {
@@ -33,5 +35,10 @@ public class BookController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Book findOne(@PathVariable Long id) {
         return bookRepository.findOne(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/search")
+    public Iterable<Book> search(@RequestParam(value = "author") String author) {
+        return bookRepository.findAll(isAuthorizedBy(author));
     }
 }
