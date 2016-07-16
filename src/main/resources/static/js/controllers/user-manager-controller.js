@@ -1,5 +1,5 @@
-bookishApp.controller('userManagerController', ['$rootScope', '$location', 'userService', 'localStorageService',
-    function($rootScope, $location, userService, localStorageService) {
+bookishApp.controller('userManagerController', ['$rootScope', '$location', 'userService', 'searchService', 'localStorageService',
+    function($rootScope, $location, userService, searchService, localStorageService) {
         var session = localStorageService.get("session");
         if(session) {
             $rootScope.authenticated = session.authenticated;
@@ -32,5 +32,11 @@ bookishApp.controller('userManagerController', ['$rootScope', '$location', 'user
         $rootScope.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
+
+
+        self.keywords = "";
+        self.performSearch = function() {
+            $rootScope.$broadcast('search-performed', {'keywords': self.keywords});
+        }
 
 }]);

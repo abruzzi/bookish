@@ -113,3 +113,12 @@ a.disabled {
 a.disabled:hover {
     text-decoration: none;
 }
+
+.navbar-form {
+    margin-bottom: 0;
+}
+
+.navbar-form .form-control {
+    height: 34px;
+    width: 240px;
+}

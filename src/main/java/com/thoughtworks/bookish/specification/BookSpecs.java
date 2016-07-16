@@ -20,6 +20,10 @@ public class BookSpecs {
         };
     }
 
+    public static Specification<Book> hasTitleLike(String title) {
+        return (root, query, builder) -> builder.like(builder.lower(root.get(Book_.title)), getContainsLikePattern(title));
+    }
+
     private static String getContainsLikePattern(String term) {
         return StringUtils.isEmpty(term) ? "%" : "%" + term.toLowerCase() + "%";
     }

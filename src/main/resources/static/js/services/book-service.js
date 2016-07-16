@@ -1,9 +1,9 @@
 bookishApp.factory('bookService', ['$http', '$q', function($http, $q) {
     return {
-        fetchAll: function(page) {
+        fetchAll: function(keywords, page) {
             var defered = $q.defer();
 
-            $http.get('/books?page='+(page || 0)).success(function(data) {
+            $http.get('/books?title='+keywords+'&page='+(page || 0)).success(function(data) {
                 defered.resolve(data);
             }).error(function(data) {
                 defered.reject(data);
