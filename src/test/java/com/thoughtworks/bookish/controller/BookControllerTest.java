@@ -76,6 +76,19 @@ public class BookControllerTest {
     }
 
     @Test
+    public void should_return_some_books_based_on_search_by_title() {
+        Iterable<Book> saved = bookRepository.save(prepareBooks());
+
+        given().
+        when().
+                get("/books?title=代码").
+        then().
+                statusCode(200).
+                body("content.title", hasItems("代码整洁之道", "重构:改善既有代码的设计")).
+                body("content.title", not(hasItem("敏捷软件开发(原则模式与实践)")));
+    }
+
+    @Test
     public void should_return_list_of_books_with_pagination() {
         Iterable<Book> saved = bookRepository.save(prepareBooks());
 
