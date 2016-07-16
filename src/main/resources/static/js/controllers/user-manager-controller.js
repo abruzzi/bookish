@@ -1,5 +1,5 @@
-bookishApp.controller('userManagerController', ['$rootScope', '$location', 'userService', 'searchService', 'localStorageService',
-    function($rootScope, $location, userService, searchService, localStorageService) {
+bookishApp.controller('userManagerController', ['$rootScope', '$location', 'userService', 'localStorageService',
+    function($rootScope, $location, userService , localStorageService) {
         var session = localStorageService.get("session");
         if(session) {
             $rootScope.authenticated = session.authenticated;
